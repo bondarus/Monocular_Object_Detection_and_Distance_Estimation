@@ -149,42 +149,6 @@ while True:
                 label = f"License Plate: {distance:.2f} mm"
                 annotator.box_label((x1, y1, x2, y2), label, color=colors(cls))
 
-    
-    # # Calculate distance between cyclist and vehicle
-    # if largest_bicycle_distance and largest_license_plate_distance and largest_bicycle_box and largest_license_plate_box:
-    #     # Use the closest x-axis edges for the bicycle and vehicle bounding boxes
-    #     bicycle_x_edge = largest_person_box[2] if largest_person_box[2] < largest_license_plate_box[0] else largest_person_box[0]
-    #     vehicle_x_edge = largest_license_plate_box[0] if largest_license_plate_box[0] > largest_person_box[2] else largest_license_plate_box[2]
-
-    #     bicycle_edge_y = (largest_person_box[1] + largest_person_box[3]) / 2  # Average y-coordinate for the bicycle edge
-    #     vehicle_edge_y = (largest_license_plate_box[1] + largest_license_plate_box[3]) / 2  # Average y-coordinate for the vehicle edge
-
-    #     # Compute angles relative to the camera center for these edges
-    #     bicycle_angle = np.deg2rad((bicycle_x_edge / frame.shape[1] - 0.5) * FOV)
-    #     vehicle_angle = np.deg2rad((vehicle_x_edge / frame.shape[1] - 0.5) * FOV)
-
-    #     # Adjust for depth differences using depth and angle
-    #     corrected_bicycle_x = largest_person_distance * np.tan(bicycle_angle)
-    #     corrected_vehicle_x = largest_license_plate_distance * np.tan(vehicle_angle)
-
-    #     # Calculate the corrected lateral distance
-    #     corrected_lateral_distance = abs(corrected_bicycle_x - corrected_vehicle_x)
-
-    #     # Calculate the overall distance using Pythagoras theorem
-    #     depth_diff = abs(largest_bicycle_distance - largest_license_plate_distance)
-    #     total_distance = np.sqrt(corrected_lateral_distance**2 + depth_diff**2)
-
-    #     # Annotate the calculated distance on the frame
-    #     cv2.putText(frame,f"Bicycle-Vehicle Distance: {total_distance:.2f} mm",(10, 60),cv2.FONT_HERSHEY_SIMPLEX,0.7,(255, 255, 255),2,)
-
-    #     bicycle_edge = (int(bicycle_x_edge), int(bicycle_edge_y))
-    #     vehicle_edge = (int(vehicle_x_edge), int(vehicle_edge_y))
-
-    #     # Draw a line between the closest x-axis edges of the bicycle and the vehicle
-    #     cv2.line(frame, bicycle_edge, vehicle_edge, (0, 255, 0), 2)  # Green line
-    #     cv2.circle(frame, bicycle_edge, 5, (255, 0, 0), -1)  # Blue dot for bicycle edge
-    #     cv2.circle(frame, vehicle_edge, 5, (0, 0, 255), -1)  # Red dot for vehicle edge
-
 
     # Calculate distance between cyclist and vehicle using the cosine rule
     if largest_bicycle_distance and largest_license_plate_distance and largest_bicycle_box and largest_license_plate_box:
